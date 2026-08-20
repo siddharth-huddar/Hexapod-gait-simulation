@@ -1,6 +1,6 @@
 # Hexapod Gait Simulation using ROS 2
 
-![Hexapod Simulation](images/hexapod_gazebo.png)
+![Hexapod Simulation](images/hexapod.png)
 
 A ROS 2-based simulation of a hexapod robot developed to explore robot modeling, gait control, joint coordination, and physics-based simulation using ROS 2, URDF, RViz, and Gazebo.
 
