@@ -1,0 +1,20 @@
+[0.528s] Invoking command in '/home/siddharth/ros2_ws/src/hexapod': PYTHONPATH=/home/siddharth/ros2_ws/src/hexapod/build/hexapod/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/hexapod build --build-base /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build install --record /home/siddharth/ros2_ws/src/hexapod/build/hexapod/install.log --single-version-externally-managed install_data
+[0.719s] running egg_info
+[0.719s] writing build/hexapod/hexapod.egg-info/PKG-INFO
+[0.720s] writing dependency_links to build/hexapod/hexapod.egg-info/dependency_links.txt
+[0.720s] writing entry points to build/hexapod/hexapod.egg-info/entry_points.txt
+[0.720s] writing requirements to build/hexapod/hexapod.egg-info/requires.txt
+[0.720s] writing top-level names to build/hexapod/hexapod.egg-info/top_level.txt
+[0.721s] reading manifest file 'build/hexapod/hexapod.egg-info/SOURCES.txt'
+[0.722s] writing manifest file 'build/hexapod/hexapod.egg-info/SOURCES.txt'
+[0.722s] running build
+[0.722s] running build_py
+[0.722s] running install
+[0.722s] running install_lib
+[0.724s] running install_data
+[0.724s] running install_egg_info
+[0.725s] removing '/home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod-0.0.0-py3.10.egg-info' (and everything under it)
+[0.726s] Copying build/hexapod/hexapod.egg-info to /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod-0.0.0-py3.10.egg-info
+[0.726s] running install_scripts
+[0.744s] writing list of installed files to '/home/siddharth/ros2_ws/src/hexapod/build/hexapod/install.log'
+[0.770s] Invoked command in '/home/siddharth/ros2_ws/src/hexapod' returned '0': PYTHONPATH=/home/siddharth/ros2_ws/src/hexapod/build/hexapod/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/hexapod build --build-base /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build install --record /home/siddharth/ros2_ws/src/hexapod/build/hexapod/install.log --single-version-externally-managed install_data

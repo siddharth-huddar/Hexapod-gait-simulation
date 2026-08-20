@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <arg name="auto_control" value="true" />
+
+  <include file="$(find hexapod)/launch/gazebo.launch" />
+  <include file="$(find hexapod)/launch/slam.launch" />
+  <include file="$(find hexapod)/launch/move.launch" />
+  <node name="teleop_controller" pkg="hexapod" type="teleop_control.py" output="screen" unless="$(arg auto_control)" />
+  <node name="automatic_controller" pkg="hexapod" type="auto_control.py" output="screen" if="$(arg auto_control)" />
+
+</launch>

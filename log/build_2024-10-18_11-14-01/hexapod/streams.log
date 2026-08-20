@@ -1,0 +1,45 @@
+[0.609s] Invoking command in '/home/siddharth/ros2_ws/src/hexapod': PYTHONPATH=/home/siddharth/ros2_ws/src/hexapod/build/hexapod/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/hexapod build --build-base /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build install --record /home/siddharth/ros2_ws/src/hexapod/build/hexapod/install.log --single-version-externally-managed install_data
+[0.795s] running egg_info
+[0.796s] creating build/hexapod/hexapod.egg-info
+[0.796s] writing build/hexapod/hexapod.egg-info/PKG-INFO
+[0.796s] writing dependency_links to build/hexapod/hexapod.egg-info/dependency_links.txt
+[0.796s] writing entry points to build/hexapod/hexapod.egg-info/entry_points.txt
+[0.796s] writing requirements to build/hexapod/hexapod.egg-info/requires.txt
+[0.796s] writing top-level names to build/hexapod/hexapod.egg-info/top_level.txt
+[0.796s] writing manifest file 'build/hexapod/hexapod.egg-info/SOURCES.txt'
+[0.798s] reading manifest file 'build/hexapod/hexapod.egg-info/SOURCES.txt'
+[0.798s] writing manifest file 'build/hexapod/hexapod.egg-info/SOURCES.txt'
+[0.804s] running build
+[0.804s] running build_py
+[0.805s] creating /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build
+[0.805s] creating /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib
+[0.805s] creating /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod
+[0.805s] copying hexapod/cmd_vel_publisher.py -> /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod
+[0.806s] copying hexapod/auto_control.py -> /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod
+[0.806s] copying hexapod/__init__.py -> /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod
+[0.806s] copying hexapod/odom_publisher.py -> /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod
+[0.806s] copying hexapod/teleop_control.py -> /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod
+[0.806s] running install
+[0.807s] running install_lib
+[0.807s] creating /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod
+[0.808s] copying /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod/cmd_vel_publisher.py -> /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod
+[0.808s] copying /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod/auto_control.py -> /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod
+[0.808s] copying /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod/__init__.py -> /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod
+[0.808s] copying /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod/odom_publisher.py -> /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod
+[0.808s] copying /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build/lib/hexapod/teleop_control.py -> /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod
+[0.808s] byte-compiling /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod/cmd_vel_publisher.py to cmd_vel_publisher.cpython-310.pyc
+[0.809s] byte-compiling /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod/auto_control.py to auto_control.cpython-310.pyc
+[0.810s] byte-compiling /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod/__init__.py to __init__.cpython-310.pyc
+[0.810s] byte-compiling /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod/odom_publisher.py to odom_publisher.cpython-310.pyc
+[0.811s] byte-compiling /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod/teleop_control.py to teleop_control.cpython-310.pyc
+[0.811s] running install_data
+[0.811s] creating /home/siddharth/ros2_ws/src/hexapod/install/hexapod/share/ament_index
+[0.811s] creating /home/siddharth/ros2_ws/src/hexapod/install/hexapod/share/ament_index/resource_index
+[0.811s] creating /home/siddharth/ros2_ws/src/hexapod/install/hexapod/share/ament_index/resource_index/packages
+[0.811s] copying resource/hexapod -> /home/siddharth/ros2_ws/src/hexapod/install/hexapod/share/ament_index/resource_index/packages
+[0.812s] copying package.xml -> /home/siddharth/ros2_ws/src/hexapod/install/hexapod/share/hexapod
+[0.812s] running install_egg_info
+[0.813s] Copying build/hexapod/hexapod.egg-info to /home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages/hexapod-0.0.0-py3.10.egg-info
+[0.814s] running install_scripts
+[0.831s] writing list of installed files to '/home/siddharth/ros2_ws/src/hexapod/build/hexapod/install.log'
+[0.856s] Invoked command in '/home/siddharth/ros2_ws/src/hexapod' returned '0': PYTHONPATH=/home/siddharth/ros2_ws/src/hexapod/build/hexapod/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/siddharth/ros2_ws/src/hexapod/install/hexapod/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/hexapod build --build-base /home/siddharth/ros2_ws/src/hexapod/build/hexapod/build install --record /home/siddharth/ros2_ws/src/hexapod/build/hexapod/install.log --single-version-externally-managed install_data

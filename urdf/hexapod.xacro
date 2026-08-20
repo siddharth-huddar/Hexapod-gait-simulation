@@ -1,0 +1,448 @@
+<?xml version="1.0" ?>
+<robot name="hexapod" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="lidar_height" value="0.05" />
+  <xacro:property name="lidar_radius" value="0.025" />
+  <xacro:property name="lidar_range" value="6" />
+  <xacro:property name="lidar_mass" value="0.1" />
+
+  <xacro:include filename="$(find hexapod)/urdf/materials.xacro" />
+  <xacro:include filename="$(find hexapod)/urdf/hexapod.trans" />
+  <xacro:include filename="$(find hexapod)/urdf/hexapod.gazebo" />
+
+  <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertia ixx="${m * (3 * r * r + h * h) / 12}" ixy="0" ixz="0"
+      iyy="${m * (3 * r * r + h * h) / 12}" iyz="0"
+      izz="${m * r * r / 2}"
+    />
+  </xacro:macro>
+
+  <xacro:macro name="leg_grip_surface_props">
+    <surface>
+      <friction>
+        <ode>
+          <mu>100000</mu>
+          <mu2>100000</mu2>
+        </ode>
+      </friction>
+      <contact>
+        <ode>
+          <soft_cfm>100.0</soft_cfm>
+          <soft_erp>10.0</soft_erp>
+          <min_depth>0.003</min_depth>
+        </ode>
+      </contact>
+    </surface>
+  </xacro:macro>
+
+  <xacro:macro name="leg_grip_joint_props">
+    <axis>
+      <xyz>1.0 0.0 0.0</xyz>
+      <dynamics>
+        <friction>100000</friction>
+        <damping>0.5</damping>
+      </dynamics>
+    </axis>
+    <physics>
+      <ode>
+        <implicit_spring_damper>1</implicit_spring_damper>
+      </ode>
+    </physics>
+  </xacro:macro>
+
+  <link name="dummy">
+  </link>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="2.4070960763754144e-11 6.3476485072098135e-12 0.1709901766523239" rpy="0 0 0"/>
+      <mass value="1.5574752213508936"/>
+      <inertia ixx="0.042556" iyy="0.014288" izz="0.051181" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="leg_6dof_v2_1">
+    <inertial>
+      <origin xyz="0.0050000000000001155 -0.03235166076884674 -0.07070254923546676" rpy="0 0 0"/>
+      <mass value="0.02386470398218519"/>
+      <inertia ixx="0.000127" iyy="0.000102" izz="2.5e-05" ixy="-0.0" iyz="-1.4e-05" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.125 0.23 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.125 0.23 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="leg_6dof_v2_2">
+    <inertial>
+      <origin xyz="0.005000000000000088 -0.031141870756175725 -0.07124369582713279" rpy="0 0 0"/>
+      <mass value="0.02386470398218519"/>
+      <inertia ixx="0.000127" iyy="0.000102" izz="2.5e-05" ixy="-0.0" iyz="-1.2e-05" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.14 0.0 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.14 0.0 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="leg_6dof_v2_3">
+    <inertial>
+      <origin xyz="0.005000000000000032 -0.03135301887406641 -0.07115102691021814" rpy="0 0 0"/>
+      <mass value="0.02386470398218519"/>
+      <inertia ixx="0.000127" iyy="0.000102" izz="2.5e-05" ixy="-0.0" iyz="-1.2e-05" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.125 -0.23 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_3.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.125 -0.23 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_3.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="leg_6dof_v2_6">
+    <inertial>
+      <origin xyz="-0.004999999999999921 -0.031608775260559885 -0.07103777691780166" rpy="0 0 0"/>
+      <mass value="0.02386470398218519"/>
+      <inertia ixx="0.000127" iyy="0.000102" izz="2.5e-05" ixy="0.0" iyz="-1.3e-05" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.125 -0.23 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_6.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.125 -0.23 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_6.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="leg_6dof_v2_5">
+    <inertial>
+      <origin xyz="-0.004999999999999893 -0.031525561415955805 -0.07107474516524885" rpy="0 0 0"/>
+      <mass value="0.02386470398218519"/>
+      <inertia ixx="0.000127" iyy="0.000102" izz="2.5e-05" ixy="-0.0" iyz="-1.3e-05" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.14 0.0 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_5.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.14 0.0 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_5.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="leg_6dof_v2_4">
+    <inertial>
+      <origin xyz="-0.004999999999999977 -0.03142019182128922 -0.07112138896850714" rpy="0 0 0"/>
+      <mass value="0.02386470398218519"/>
+      <inertia ixx="0.000127" iyy="0.000102" izz="2.5e-05" ixy="0.0" iyz="-1.3e-05" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.125 0.23 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_4.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.125 0.23 -0.1885" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/leg_6dof_v2_4.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="rubber_grip__1">
+    <inertial>
+      <origin xyz="-2.7755575615628914e-17 -0.07624625178010364 0.04021337037165276" rpy="0 0 0"/>
+      <mass value="0.00787636345148171"/>
+      <inertia ixx="2.4e-05" iyy="1.5e-05" izz="9e-06" ixy="-0.0" iyz="9e-06" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.13 0.20481 -0.022979" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.13 0.20481 -0.022979" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <xacro:leg_grip_surface_props />
+    </collision>
+  </link>
+
+  <link name="rubber_grip__2">
+    <inertial>
+      <origin xyz="-2.220446049250313e-16 -0.07692002771739237 0.03890734556454367" rpy="0 0 0"/>
+      <mass value="0.00787636345148171"/>
+      <inertia ixx="2.4e-05" iyy="1.5e-05" izz="9e-06" ixy="0.0" iyz="9e-06" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.145 -0.028007 -0.023433" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.145 -0.028007 -0.023433" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <xacro:leg_grip_surface_props />
+    </collision>
+  </link>
+
+  <link name="rubber_grip__3">
+    <inertial>
+      <origin xyz="-2.498001805406602e-16 -0.0768049601213027 0.039134959310441905" rpy="0 0 0"/>
+      <mass value="0.00787636345148171"/>
+      <inertia ixx="2.4e-05" iyy="1.5e-05" izz="9e-06" ixy="-0.0" iyz="9e-06" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.13 -0.257518 -0.023351" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__3.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.13 -0.257518 -0.023351" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__3.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <xacro:leg_grip_surface_props />
+    </collision>
+  </link>
+
+  <link name="rubber_grip__4">
+    <inertial>
+      <origin xyz="-1.6653345369377348e-16 -0.076767931454116 0.03920755648359017" rpy="0 0 0"/>
+      <mass value="0.00787636345148171"/>
+      <inertia ixx="2.4e-05" iyy="1.5e-05" izz="9e-06" ixy="-0.0" iyz="9e-06" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.13 0.202638 -0.023325" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__4.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.13 0.202638 -0.023325" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__4.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <xacro:leg_grip_surface_props />
+    </collision>
+  </link>
+
+  <link name="rubber_grip__5">
+    <inertial>
+      <origin xyz="-3.885780586188048e-16 -0.07670956484773331 0.03932191594228095" rpy="0 0 0"/>
+      <mass value="0.00787636345148171"/>
+      <inertia ixx="2.4e-05" iyy="1.5e-05" izz="9e-06" ixy="-0.0" iyz="9e-06" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.145 -0.027117 -0.023284" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__5.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.145 -0.027117 -0.023284" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__5.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <xacro:leg_grip_surface_props />
+    </collision>
+  </link>
+
+  <link name="rubber_grip__6">
+    <inertial>
+      <origin xyz="-5.551115123125783e-17 -0.07666296509883322 0.03941108000544903" rpy="0 0 0"/>
+      <mass value="0.00787636345148171"/>
+      <inertia ixx="2.4e-05" iyy="1.5e-05" izz="9e-06" ixy="-0.0" iyz="9e-06" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.13 -0.256923 -0.023253" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__6.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.13 -0.256923 -0.023253" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hexapod/meshes/rubber_grip__6.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <xacro:leg_grip_surface_props />
+    </collision>
+  </link>
+
+  <link name="link_lidar">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <inertial>
+      <mass value="${lidar_mass}"/>
+      <xacro:cylinder_inertia m="${lidar_mass}" r="${lidar_radius}" h="${lidar_height}"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="${lidar_height}" radius="${lidar_radius}"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="${lidar_height}" radius="${lidar_radius}"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="joint_lidar" type="fixed">
+    <origin rpy="0 0 1.5708" xyz="0 0 0.262" />
+
+    <parent link="base_link"/>
+    <child link="link_lidar"/>
+    <limit effort="1000" velocity="1"/>
+        <axis rpy="0 0 0" xyz="0 0 1"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+
+  <joint name="dummy_joint" type="fixed">
+    <parent link="dummy"/>
+    <child link="base_link"/>
+  </joint>
+
+  <joint name="right_hind_leg_joint" type="continuous">
+    <origin xyz="0.125 -0.23 0.1885" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="leg_6dof_v2_1"/>
+  </joint>
+
+  <joint name="right_mid_leg_joint" type="continuous">
+    <origin xyz="0.14 0.0 0.1885" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="leg_6dof_v2_2"/>
+  </joint>
+
+  <joint name="right_front_leg_joint" type="continuous">
+    <origin xyz="0.125 0.23 0.1885" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="leg_6dof_v2_3"/>
+  </joint>
+
+  <joint name="left_front_leg_joint" type="continuous">
+    <origin xyz="-0.125 0.23 0.1885" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="leg_6dof_v2_6"/>
+  </joint>
+
+  <joint name="left_mid_leg_joint" type="continuous">
+    <origin xyz="-0.14 0.0 0.1885" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="leg_6dof_v2_5"/>
+  </joint>
+
+  <joint name="left_hind_leg_joint" type="continuous">
+    <origin xyz="-0.125 -0.23 0.1885" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="leg_6dof_v2_4"/>
+  </joint>
+
+  <joint name="right_hind_grip_joint" type="fixed">
+    <origin xyz="0.005 0.02519 -0.165521" rpy="0 0 0"/>
+    <parent link="leg_6dof_v2_1"/>
+    <child link="rubber_grip__1"/>
+    <xacro:leg_grip_joint_props />
+  </joint>
+
+  <joint name="right_mid_grip_joint" type="fixed">
+    <origin xyz="0.005 0.028007 -0.165067" rpy="0 0 0"/>
+    <parent link="leg_6dof_v2_2"/>
+    <child link="rubber_grip__2"/>
+    <xacro:leg_grip_joint_props />
+  </joint>
+
+  <joint name="right_front_grip_joint" type="fixed">
+    <origin xyz="0.005 0.027518 -0.165149" rpy="0 0 0"/>
+    <parent link="leg_6dof_v2_3"/>
+    <child link="rubber_grip__3"/>
+    <xacro:leg_grip_joint_props />
+  </joint>
+
+  <joint name="left_hind_grip_joint" type="fixed">
+    <origin xyz="-0.005 0.027362 -0.165175" rpy="0 0 0"/>
+    <parent link="leg_6dof_v2_4"/>
+    <child link="rubber_grip__4"/>
+    <xacro:leg_grip_joint_props />
+  </joint>
+
+  <joint name="left_mid_grip_joint" type="fixed">
+    <origin xyz="-0.005 0.027117 -0.165216" rpy="0 0 0"/>
+    <parent link="leg_6dof_v2_5"/>
+    <child link="rubber_grip__5"/>
+    <xacro:leg_grip_joint_props />
+  </joint>
+
+  <joint name="left_front_grip_joint" type="fixed">
+    <origin xyz="-0.005 0.026923 -0.165247" rpy="0 0 0"/>
+    <parent link="leg_6dof_v2_6"/>
+    <child link="rubber_grip__6"/>
+    <xacro:leg_grip_joint_props />
+  </joint>
+
+</robot>

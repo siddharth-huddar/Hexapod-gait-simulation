@@ -1,0 +1,162 @@
+<?xml version="1.0" ?>
+<robot name="hexapod" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+<xacro:property name="leg_mu1" value="0.2" />
+<xacro:property name="leg_mu2" value="0.2" />
+<xacro:property name="grip_mu1" value="100000" />
+<xacro:property name="grip_mu2" value="100000" />
+
+<gazebo>
+  <plugin name="control_plugin" filename="libgazebo_ros_control.so">
+    <robotNamespace>/hexapod</robotNamespace>
+  </plugin>
+</gazebo>
+<gazebo>
+  <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <alwayson>true</alwayson>
+      <updaterate>50.0</updaterate>
+      <bodyname>base_link</bodyname>
+      <topicname>/fix</topicname>
+      <velocitytopicname>/fix_velocity</velocitytopicname>
+      <drift>0.0 0.0 0.0</drift>
+      <gaussianNoise>0.0 0.0 0.0</gaussianNoise>
+      <velocityDrift>0 0 0</velocityDrift>
+      <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+  </plugin>
+  
+  <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+    <alwaysOn>true</alwaysOn>
+    <bodyName>base_link</bodyName>
+    <topicName>/imu</topicName>
+    <serviceName>imu_service</serviceName>
+    <gaussianNoise>0.0</gaussianNoise>
+    <updateRate>50.0</updateRate>
+  </plugin>
+</gazebo>
+
+<gazebo reference="link_lidar">
+  <sensor type="ray" name="head_rplidar_sensor">
+    <pose>0 0 0 0 0 0</pose>
+    <visualize>true</visualize>
+    <update_rate>50.0</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>721</samples>
+          <resolution>1</resolution>
+          <min_angle>-3.14159265</min_angle>
+          <max_angle>3.14159265</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.5</min>
+        <max>${lidar_range}</max>
+        <resolution>0.01</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_laser.so">
+      <topicName>/hexapod/laser/scan</topicName>
+      <frameName>laser</frameName>
+    </plugin>
+  </sensor>
+</gazebo> 
+
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="leg_6dof_v2_1">
+  <material>${body_color}</material>
+  <mu1>${leg_mu1}</mu1>
+  <mu2>${leg_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_6dof_v2_2">
+  <material>${body_color}</material>
+  <mu1>${leg_mu1}</mu1>
+  <mu2>${leg_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_6dof_v2_3">
+  <material>${body_color}</material>
+  <mu1>${leg_mu1}</mu1>
+  <mu2>${leg_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_6dof_v2_4">
+  <material>${body_color}</material>
+  <mu1>${leg_mu1}</mu1>
+  <mu2>${leg_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_6dof_v2_5">
+  <material>${body_color}</material>
+  <mu1>${leg_mu1}</mu1>
+  <mu2>${leg_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="leg_6dof_v2_6">
+  <material>${body_color}</material>
+  <mu1>${leg_mu1}</mu1>
+  <mu2>${leg_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="rubber_grip__1">
+  <material>${body_color}</material>
+  <mu1>${grip_mu1}</mu1>
+  <mu2>${grip_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="rubber_grip__2">
+  <material>${body_color}</material>
+  <mu1>${grip_mu1}</mu1>
+  <mu2>${grip_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="rubber_grip__3">
+  <material>${body_color}</material>
+  <mu1>${grip_mu1}</mu1>
+  <mu2>${grip_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="rubber_grip__4">
+  <material>${body_color}</material>
+  <mu1>${grip_mu1}</mu1>
+  <mu2>${grip_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="rubber_grip__5">
+  <material>${body_color}</material>
+  <mu1>${grip_mu1}</mu1>
+  <mu2>${grip_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="rubber_grip__6">
+  <material>${body_color}</material>
+  <mu1>${grip_mu1}</mu1>
+  <mu2>${grip_mu2}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+</robot>

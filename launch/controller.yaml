@@ -1,0 +1,39 @@
+hexapod:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+  
+  gazebo_ros_control:
+    pid_gains:
+      right_hind_leg_joint: {p: 2.0, i: 0, d: 0.05}
+      right_mid_leg_joint: {p: 2.0, i: 0, d: 0.05}
+      right_front_leg_joint: {p: 2.0, i: 0, d: 0.05}
+      left_hind_leg_joint: {p: 2.0, i: 0, d: 0.05}
+      left_mid_leg_joint: {p: 2.0, i: 0, d: 0.05}
+      left_front_leg_joint: {p: 2.0, i: 0, d: 0.05}
+  
+  # Position Controllers --------------------------------------
+  right_hind_leg_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: right_hind_leg_joint
+  
+  right_mid_leg_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: right_mid_leg_joint
+  
+  right_front_leg_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: right_front_leg_joint
+  
+  left_hind_leg_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: left_hind_leg_joint
+  
+  left_mid_leg_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: left_mid_leg_joint
+  
+  left_front_leg_joint_position_controller:
+    type: position_controllers/JointPositionController
+    joint: left_front_leg_joint
